@@ -18,8 +18,13 @@ public class PaymentController {
     @PostMapping("/user/payment")
     public StripeResponse checkoutPayment(
         @RequestParam("amount") Double amount , 
-        @RequestParam("qty") Long qty
-    ) throws StripeException{
-        return stripeService.checkoutTickets(amount, qty);
+        @RequestParam("qty") Long qty,
+        @RequestParam("busId") Long busId,
+        @RequestParam("startingPoint") String startingPoint,
+        @RequestParam("endingPoint") String endingPoint,
+        @RequestParam("userId") Long  userId
+        ) throws StripeException{
+ 
+        return stripeService.checkoutTickets(amount, qty,busId,startingPoint,endingPoint,userId);
     }
 }
