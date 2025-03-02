@@ -24,8 +24,9 @@ public class BookingResponse {
     private String name;
     private String source;
     private String destination;
+    private Long qty;
     private double fare;
-    private LocalDate bookingDate;
-    private LocalTime bookingTime;
+    private String bookingDate;
+    private String bookingTime;
 
 }

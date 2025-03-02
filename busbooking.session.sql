@@ -1,1 +1,1 @@
-select * from myuser
+select * from booking

@@ -21,13 +21,14 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookingId;
+    private String name;
     private String source;
     private String destination;
     private double fare;
     private Long number_of_ticket;
     private LocalDateTime bookingLocalDateTime;
-    private LocalDate bookingDate;
-    private LocalTime bookTime;
+    private String bookingDate;
+    private String bookTime;
 
     @ManyToOne
     @JoinColumn(name = "user_id",nullable = false)

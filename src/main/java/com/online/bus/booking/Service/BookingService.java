@@ -3,6 +3,7 @@ package com.online.bus.booking.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,7 @@ public class BookingService {
     }
 
     public BookingResponse createBooking(Long userId,Long busId,String source,String destination,Long ticket){
+        
 
         BookingResponse response = new BookingResponse();
 
@@ -54,8 +56,13 @@ public class BookingService {
         booking.setSource(source);
         booking.setDestination(destination);
         booking.setBookingLocalDateTime(LocalDateTime.now());
-        booking.setBookTime(LocalTime.now());
-        booking.setBookingDate(LocalDate.now());
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("EEEE, dd-MM-yyyy");
+        String formatDate =  LocalDate.now().format(dateFormat);
+        booking.setBookingDate(formatDate);
+        LocalTime currentTime = LocalTime.now();
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
+        String formattedTime = currentTime.format(timeFormatter);
+        booking.setBookTime(formattedTime);;
         booking.setBus(bus);
         booking.setNumber_of_ticket(ticket);
 
@@ -83,9 +90,10 @@ public class BookingService {
         bookingRepository.save(booking);
 
         response.setBookingId(booking.getBookingId());
-        response.setName(user.getUsername());
+        response.setName(user.getUser_name());
         response.setSource(source);
         response.setDestination(destination);
+        response.setQty(ticket);
         response.setFare(fare);
         response.setBookingDate(booking.getBookingDate());
         response.setBookingTime(booking.getBookTime());

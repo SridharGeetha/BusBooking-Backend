@@ -72,6 +72,7 @@ public class UserService {
             var refreshToken = jwtUtils.generateRefershToken(new HashMap<>(), user);
             response.setUserId(user.getUserId());
             response.setEmail(user.getEmail());
+            response.setUsername(user.getUser_name());
             response.setRole(user.getRole());
             response.setToken(jwt);
             response.setStatusCode(200);
