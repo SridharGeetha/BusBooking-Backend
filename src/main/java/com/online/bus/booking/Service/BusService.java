@@ -15,8 +15,7 @@ public class BusService {
 
     @Autowired
     private BusRepository busRepository;
-    
-public String AddBus(Long busId , String route,String startPoint,String destination,Double totalFare){
+    public String AddBus(Long busId , String route,String startPoint,String destination,Double totalFare){
   
     Bus bus = new Bus();
     bus.setBusId(busId);
@@ -55,6 +54,36 @@ public BusResponse getBusDetails(Long busId){
 
     return response;
 
+}
+
+public String updateBus(Long busId,BusResponse request){
+
+    Bus busData = busRepository.findById(busId).orElseThrow(()-> new RuntimeException("Bus Not Found"));
+
+    if(request.getBusId() != null){
+        busData.setBusId(request.getBusId());
+    }
+    if(request.getRoute() != null){
+        busData.setRoute(request.getRoute());;
+    }
+    if(request.getStartingPoint() != null){
+        busData.setStartingPoint(request.getStartingPoint());
+    }
+    if(request.getEndingPoint() != null){
+        busData.setEndingPoint(request.getEndingPoint());
+    }
+    if(request.getTotalFare() != null){
+        busData.setTotalFare(request.getTotalFare());
+    }
+
+    busRepository.save(busData);
+
+    return "Bus Updated SuccessFully with ID :"+busData.getBusId()+" "+busData.getRoute();
+}
+
+public String deleteBus(Long busId){
+    busRepository.deleteById(busId);
+    return "Bus Id with "+busId+" deleted Successfully";
 }
 
 }

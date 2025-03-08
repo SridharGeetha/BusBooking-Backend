@@ -7,9 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.online.bus.booking.Dto.BusStopRequestResponse;
 import com.online.bus.booking.Entity.BusStop;
 import com.online.bus.booking.Service.BusStopService;
 
@@ -34,6 +37,11 @@ public class BusStopController {
     @GetMapping("/adminuser/busStops/{busId}")
     public ResponseEntity<List<BusStop>> getBusStops(@PathVariable Long busId) {
         return ResponseEntity.ok(busStopService.getBusStopsByBusId(busId));
+    } 
+
+    @PutMapping("/admin/update/bus/stop/{busId}")
+    public ResponseEntity<String> updateBusStop(@PathVariable Long busId,@RequestBody BusStopRequestResponse request){
+        return ResponseEntity.ok(busStopService.updateBusStop(busId, request));
     }
 
 }
