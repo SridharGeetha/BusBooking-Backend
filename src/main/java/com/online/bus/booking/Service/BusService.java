@@ -1,6 +1,7 @@
 package com.online.bus.booking.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,9 +34,11 @@ public String AddBus(Long busId , String route,String startPoint,String destinat
     }
 }
 
-public List<Bus> getAllBus(){
+public List<BusResponse> getAllBus(){
 
-    return busRepository.findAll();
+    List<Bus> buses = busRepository.findAll();
+
+    return buses.stream().map(bus -> new BusResponse(bus)).collect(Collectors.toList());
 
 }
 

@@ -25,4 +25,12 @@ public class BusResponse {
 
     private Bus bus;
     private List<Bus> allBus;
+
+    public BusResponse(Bus bus) {
+        this.busId = bus.getBusId();
+        this.route = bus.getRoute();
+        this.startingPoint = bus.getStartingPoint();
+        this.endingPoint = bus.getEndingPoint();
+        this.totalFare = bus.getTotalFare();
+    }
 }

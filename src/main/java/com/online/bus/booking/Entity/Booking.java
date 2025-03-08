@@ -1,8 +1,11 @@
 package com.online.bus.booking.Entity;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,6 +35,7 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "user_id",nullable = false)
+    @JsonBackReference
     private MyUser user;
 
     @ManyToOne

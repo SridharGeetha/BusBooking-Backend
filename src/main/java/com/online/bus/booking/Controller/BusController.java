@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.online.bus.booking.Dto.BusResponse;
-import com.online.bus.booking.Entity.Bus;
 import com.online.bus.booking.Service.BusService;
 
 @RestController
@@ -32,7 +31,7 @@ public class BusController {
     }
 
     @GetMapping("/adminuser/get-all-bus") 
-    public ResponseEntity<List<Bus>> getAllBus(){
+    public ResponseEntity<List<BusResponse>> getAllBus(){
         
         return ResponseEntity.ok(busService.getAllBus());
 

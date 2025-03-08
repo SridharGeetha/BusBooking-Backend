@@ -25,16 +25,17 @@ public class Bus {
     private boolean isReturn;
 
     @OneToMany(mappedBy = "bus",cascade = CascadeType.ALL)
+
     private List<Booking> bookings;
 
     @OneToMany(mappedBy = "bus",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JsonManagedReference
     private Set<BusStop> stops;
 
-    private void reverseRoute(){
-        String temp = this.startingPoint;
-        this.startingPoint = this.endingPoint;
-        this.endingPoint=temp;
-        this.isReturn = !this.isReturn;
-    }
+    // private void reverseRoute(){
+    //     String temp = this.startingPoint;
+    //     this.startingPoint = this.endingPoint;
+    //     this.endingPoint=temp;
+    //     this.isReturn = !this.isReturn;
+    // }
 }
