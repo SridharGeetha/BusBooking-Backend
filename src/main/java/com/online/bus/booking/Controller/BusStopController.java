@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,6 +43,11 @@ public class BusStopController {
     @PutMapping("/admin/update/bus/stop/{busId}")
     public ResponseEntity<String> updateBusStop(@PathVariable Long busId,@RequestBody BusStopRequestResponse request){
         return ResponseEntity.ok(busStopService.updateBusStop(busId, request));
+    }
+
+    @DeleteMapping("/admin/bus/stop/delete/{busId}")
+    public ResponseEntity<String> deleteBuStop(@PathVariable Long busId){
+        return ResponseEntity.ok(busStopService.deleteBusStop(busId));
     }
 
 }

@@ -60,5 +60,10 @@ public class BusStopService {
 
         return "BusStop update SuccessFully"+busStop.getStopName();
     }
+
+    public String deleteBusStop(Long busId){
+        busStopRepository.deleteById(busId);
+        return "BusStop deleted Successfuly";
+    }
      
 }
