@@ -37,10 +37,12 @@ public class BusStopService {
         return "Bus Stop added successfully";
     }
 
-    public Double getFareByStopName(String stopName){
-        BusStop busStop = busStopRepository.findByStopName(stopName).orElseThrow(()-> new RuntimeException("Stop not found!"));
+    public Double getFareByStopName(Long busId, String stopName) {
+        BusStop busStop = busStopRepository.findByBus_BusIdAndStopName(busId, stopName)
+            .orElseThrow(() -> new RuntimeException("Stop not found for this bus!"));
         return busStop.getFareFromStart();
     }
+    
 
     public List<BusStop> getBusStopsByBusId(Long busId) {
         return busStopRepository.findByBus_BusId(busId);

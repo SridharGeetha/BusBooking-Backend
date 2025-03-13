@@ -9,7 +9,7 @@ public class OnlineBusBookingApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OnlineBusBookingApplication.class, args);
 	}
- 
+
 }
 
 

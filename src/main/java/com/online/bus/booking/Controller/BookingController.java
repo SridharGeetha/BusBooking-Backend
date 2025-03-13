@@ -1,5 +1,7 @@
 package com.online.bus.booking.Controller;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.online.bus.booking.Dto.BookingResponse;
+
 import com.online.bus.booking.Service.BookingService;
 
 @RestController
@@ -29,12 +32,14 @@ public class BookingController {
 
     @GetMapping("/adminuser/get-fare")
     public ResponseEntity<Double> generateFare(
+        @RequestParam("busId") Long busId,
         @RequestParam("source") String source,
         @RequestParam("destination") String destination,
         @RequestParam("ticket") Long ticket){
 
-        return ResponseEntity.ok(bookingService.generateFare(source, destination, ticket));
+        return ResponseEntity.ok(bookingService.generateFare(busId,source, destination, ticket));
 
     }
+
     
 }

@@ -34,7 +34,7 @@ public class BusStopController {
 
         return ResponseEntity.ok("Bus Stop Add Successfully!");
     }
-
+ 
     @GetMapping("/adminuser/busStops/{busId}")
     public ResponseEntity<List<BusStop>> getBusStops(@PathVariable Long busId) {
         return ResponseEntity.ok(busStopService.getBusStopsByBusId(busId));

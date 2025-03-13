@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,15 +32,13 @@ public class BookingService {
     @Autowired
     private BusStopService busStopService;
 
-    public Double generateFare(String source,String destination,Long ticket){
-
-        Double sourceAmount = busStopService.getFareByStopName(source);
-        Double destinationAmount = busStopService.getFareByStopName(destination);
-
-        Double fare = (ticket)*(Math.abs(destinationAmount - sourceAmount));
-
-        return fare;
+    public Double generateFare(Long busId, String source, String destination, Long ticket) {
+        Double sourceAmount = busStopService.getFareByStopName(busId, source);
+        Double destinationAmount = busStopService.getFareByStopName(busId, destination);
+    
+        return ticket * Math.abs(destinationAmount - sourceAmount);
     }
+    
 
     public BookingResponse createBooking(Long userId,Long busId,String source,String destination,Long ticket){
         
@@ -70,7 +69,8 @@ public class BookingService {
         // boolean isReturn = bus.isReturn();
 
 
-        Double fare = generateFare(source, destination, ticket);
+        Double fare = generateFare(busId, source, destination, ticket);
+
 
         // Double fare = 0.0;
 
